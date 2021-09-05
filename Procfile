@@ -1,2 +1,2 @@
   
-web: gunicorn main:appFF
+web: gunicorn -b :$PORT main:appFF
