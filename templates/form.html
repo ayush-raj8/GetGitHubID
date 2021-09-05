@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GET YOUR GIT ID</title>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+</head>
+
+<body>
+
+<div class="center">
+
+<div class="login"  class="center">
+	<h1 class="center">GET YOUR GIT ID</h1>
+
+    <div class="row" class="center">
+    <form action="{{ url_for('predict')}}" method="post" class="center" >
+      <h2>Input Data :</h2>
+    	<p>Username <input type="text" style="background-color:Snow;" name="name" ; style="border:2px solid Tomato;" name="GitHub Username" placeholder="GitHub Username" required="required" /></p>
+        <button type="submit" style="background-color:Bisque;" class="btn btn-primary btn-block btn-large" >Submit</button>
+    </form>
+    </div>
+</div>
+</div>
+
+<div class="center">
+    <div class="center" id="printableTable">
+<table class="styled-table"  class="center">
+    <thead>
+    <tr>
+        <th >{{A}}</th>
+        <th >{{V}}</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>{{res[0][0]}}</td>
+        <td>{{res[0][1]}}</td>
+    </tr>
+
+    <tr>
+        <td>{{res[1][0]}}</td>
+        <td>{{res[1][1]}}</td>
+    </tr>
+
+    <tr>
+        <td>{{res[2][0]}}</td>
+        <td>{{res[2][1]}}</td>
+    </tr>
+    <tr>
+        <td>{{res[3][0]}}</td>
+        <td>{{res[3][1]}}</td>
+    </tr>
+
+    <tr>
+        <td>{{res[4][0]}}</td>
+        <td>{{res[4][1]}}</td>
+    </tr>
+    </tbody>
+</table>
+  <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+
+    <button class="Button Button--outline" onclick="printDiv()">Print</button>
+    </div>
+</div>
+
+</body>
+<script>
+ function printDiv() {
+         window.frames["print_frame"].document.body.innerHTML = document.getElementById("printableTable").innerHTML;
+         window.frames["print_frame"].window.focus();
+         window.frames["print_frame"].window.print();
+       }
+</script>
+<style>
+.center {
+margin: auto;
+width: 60%;
+border: 5px solid #FFFFFF;
+padding: 10px;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+</style>
+</html>
